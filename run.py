@@ -1,4 +1,4 @@
-from SOILGENIE-MVP import create_app
+from Soilgenie-mvp import create_app
 
 app = create_app()
 
