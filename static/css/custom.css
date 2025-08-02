@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+    color: #1F2937;
+}
+
+/* --- Typography --- */
+.heading-font {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    color: #111827; /* A slightly darker heading color */
+}
+
+.display-4 {
+    font-weight: 800;
+}
+
+/* --- Color Palette --- */
+.bg-primary-green { background-color: #166534; }
+.text-primary-green { color: #166534; }
+.btn-action-blue {
+    background-color: #2563EB;
+    border-color: #2563EB;
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.btn-action-blue:hover {
+    background-color: #1D4ED8;
+    border-color: #1D4ED8;
+    color: #FFFFFF;
+}
+
+/* --- Custom Sections --- */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=2874&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero-section h1, .hero-section p {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}

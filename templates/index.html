@@ -1,11 +1,111 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Welcome to SoilGenie</h1>
-            <p class="col-md-8 fs-4">Your AI-powered partner for modern agriculture. Get instant soil analysis and hyperlocal weather forecasts to boost your yield and profitability.</p>
-            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg" type="button">Get Started</a>
-        </div>
+
+<!-- 1. HERO SECTION -->
+<header class="hero-section text-center py-5 mb-5">
+    <div class="container py-5">
+        <h1 class="display-4 heading-font">From Guesswork to Growth</h1>
+        <p class="fs-4 col-lg-8 mx-auto">SoilGenie uses satellite imagery and AI to deliver precise soil analysis and farm-level weather forecasts, helping you maximize yield and profitability.</p>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-action-blue btn-lg mt-3">Get Your Free Analysis</a>
     </div>
+</header>
+
+<div class="container">
+    <!-- 2. SOCIAL PROOF SECTION -->
+    <section class="text-center mb-5 py-4">
+        <p class="text-muted fw-bold text-uppercase">POWERING THE NEXT GENERATION OF FARMING IN NIGERIA</p>
+        <!-- In a real app, these would be logos of partners -->
+        <div class="d-flex justify-content-center align-items-center gap-5">
+            <span class="fs-4 text-muted">NigComSat</span>
+            <span class="fs-4 text-muted">IITA</span>
+            <span class="fs-4 text-muted">AFEX</span>
+        </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS SECTION -->
+    <section class="text-center mb-5 py-5">
+        <h2 class="heading-font mb-3">Simple Process, Powerful Results</h2>
+        <p class="lead text-muted col-lg-6 mx-auto mb-5">Get from satellite to soil plan in three simple steps.</p>
+        <div class="row">
+            <!-- Step 1 -->
+            <div class="col-lg-4">
+                <div class="feature-icon bg-light text-primary-green">🛰️</div>
+                <h3 class="heading-font fs-4">Map Your Farm</h3>
+                <p>Use our simple map tool to digitally outline the exact boundaries of your fields from your phone or computer.</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="col-lg-4">
+                <div class="feature-icon bg-light text-primary-green">🔬</div>
+                <h3 class="heading-font fs-4">Get Instant Analysis</h3>
+                <p>Our AI engine analyzes years of satellite imagery and weather patterns for your specific plot to predict soil needs.</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="col-lg-4">
+                <div class="feature-icon bg-light text-primary-green">📈</div>
+                <h3 class="heading-font fs-4">Receive Your Plan</h3>
+                <p>Get a clear, actionable SMS with fertilizer recommendations and a detailed weather forecast on your dashboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FEATURE SPOTLIGHTS -->
+    <section class="mb-5 py-5">
+        <!-- Feature 1: Soil Analysis -->
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6">
+                <h2 class="heading-font">Precision Soil Intelligence</h2>
+                <p class="lead">Stop wasting money on the wrong fertilizers. Our AI analyzes spectral data to understand your soil's unique needs, providing recommendations for Nitrogen, pH, and more, tailored to your chosen crop.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2">✓ Reduce fertilizer costs by up to 30%</li>
+                    <li class="mb-2">✓ Boost crop health and overall yield</li>
+                    <li class="mb-2">✓ No physical samples or lab delays required</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- Placeholder for an image or graphic -->
+                <img src="https://images.unsplash.com/photo-1591785501334-a8ae6225a1e2?q=80&w=2940&auto=format&fit=crop" class="img-fluid rounded-3" alt="Soil analysis graphic">
+            </div>
+        </div>
+        <!-- Feature 2: Weather Forecasts -->
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-2">
+                <h2 class="heading-font">Truly Hyperlocal Weather</h2>
+                <p class="lead">Don't rely on regional forecasts. Get 5-day weather predictions for your farm's exact coordinates. Know the perfect time to plant, spray, and harvest with confidence.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2">✓ Plan daily and weekly activities accurately</li>
+                    <li class="mb-2">✓ Mitigate risks from unexpected weather events</li>
+                    <li class="mb-2">✓ Optimize irrigation and resource usage</li>
+                </ul>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <!-- Placeholder for an image or graphic -->
+                <img src="https://images.unsplash.com/photo-1612253337940-35d1a5a894f0?q=80&w=2940&auto=format&fit=crop" class="img-fluid rounded-3" alt="Weather graphic">
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VISION/MISSION SECTION -->
+    <section class="text-center bg-primary-green text-white rounded-3 p-5 mb-5">
+        <div class="container">
+            <h2 class="heading-font text-white">Our Vision for Nigerian Agriculture</h2>
+            <p class="lead col-lg-8 mx-auto">We believe in a future where every Nigerian farmer, regardless of size, has access to the tools and data needed to build a more profitable and sustainable farm. By harnessing the power of space technology, we are committed to building that future, one field at a time.</p>
+        </div>
+    </section>
+
+    <!-- 6. FINAL CTA -->
+    <section class="text-center mb-5 py-5">
+        <h2 class="heading-font">Ready to Transform Your Farm?</h2>
+        <p class="lead text-muted mb-4">Create your account today and join the future of farming.</p>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-action-blue btn-lg">Sign Up Now</a>
+    </section>
+</div>
+
+<!-- 7. FOOTER -->
+<footer class="py-4 text-center text-muted border-top">
+    <p>© {{ year }} SoilGenie. All Rights Reserved.</p>
+
+    <p><a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+</footer>
+
 {% endblock %}
