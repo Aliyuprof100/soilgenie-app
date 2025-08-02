@@ -33,6 +33,27 @@
                 <div class="card-body">
                     <!-- Weather information will be added here in the next milestone -->
                     <p>Weather data coming soon.</p>
+                    <div class="card">
+    <div class="card-header fw-bold">
+        5-Day Weather Forecast
+    </div>
+    <div class="card-body">
+        {% if weather %}
+            <ul class="list-unstyled">
+                {% for day in weather %}
+                    <li>
+                        <strong>{{ day.date }}:</strong> 
+                        <span class="text-danger">{{ day.max_temp }}°C</span> / 
+                        <span class="text-primary">{{ day.min_temp }}°C</span>
+                        <!-- We can add weather icons here later -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Map your first farm to see a localized weather forecast.</p>
+        {% endif %}
+    </div>
+</div>
                 </div>
             </div>
         </div>

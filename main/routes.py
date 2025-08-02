@@ -2,6 +2,9 @@ from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 from ..models import User, Farm, db
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+from ..services.weather_service import get_weather_for_location
+import json
+from ..services import sms_sender
 
 main = Blueprint('main', __name__)
 
@@ -10,28 +13,6 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html', title='Welcome')
 
-@main.route('/dashboard')
-@login_required
-def dashboard():
-    if current_user.role == 'agent':
-        # An agent's dashboard shows a list of farmers they've registered.
-        # For the dual-role model, we assume an agent registers farmers 'under them'.
-        # Since our model simplifies this, we will just show a list of all farmers for now.
-        # In a future version, we would add an 'agent_id' to the User model.
-        farmers = User.query.filter_by(role='farmer').all() # Simplified for now
-        return render_template('main/agent_dashboard.html', title='Agent Dashboard', farmers=farmers)
-    
-    elif current_user.role == 'farmer':
-        # A farmer's dashboard shows a list of their own farms.
-        farms = Farm.query.filter_by(user_id=current_user.id).all()
-        
-        # We will add weather logic here later
-        weather = None 
-        
-        return render_template('main/farmer_dashboard.html', title='My Dashboard', farms=farms, weather=weather)
-    
-    else:
-        return "Error: Unknown user role.", 403
 
 @main.route('/farmer/<int:user_id>')
 @login_required
@@ -96,6 +77,18 @@ def map_farm(user_id):
         flash(f"Analysis for '{farm_name}' is complete!", 'success')
 
         # We will add the SMS logic here in the next milestone
+        
+        farm_owner = User.query.get(user_id)
+        if farm_owner:
+            sms_sender.send_analysis_sms(
+                phone_number=farm_owner.phone_number,
+                farm_name=new_farm.farm_name,
+                crop_type=new_farm.crop_type,
+                recommendation=new_farm.last_analysis_result
+            )
+            flash('Analysis SMS has been sent to the farmer!', 'info')
+        else:
+            flash('Could not find farmer to send SMS.', 'danger')
 
         # Redirect back to the correct dashboard
         if current_user.role == 'agent':
@@ -106,3 +99,27 @@ def map_farm(user_id):
     # For a GET request, just show the page
     farm_owner = User.query.get_or_404(user_id)
     return render_template('main/map_farm.html', title='Map Farm', farm_owner=farm_owner)
+
+@main.route('/dashboard')
+@login_required
+def dashboard():
+    if current_user.role == 'agent':
+        # ... (agent logic remains the same)
+        farmers = User.query.filter_by(role='farmer').all()
+        return render_template('main/agent_dashboard.html', title='Agent Dashboard', farmers=farmers)
+    
+    elif current_user.role == 'farmer':
+        farms = Farm.query.filter_by(user_id=current_user.id).order_by(Farm.id.desc()).all()
+        
+        weather_forecast = None
+        # Find the most recently mapped farm to get a location for the weather
+        if farms:
+            latest_farm = farms[0]
+            # The geojson is stored as a string, so we need to load it as a dictionary
+            geojson_dict = json.loads(latest_farm.geojson_boundary)
+            weather_forecast = get_weather_for_location(geojson_dict)
+
+        return render_template('main/farmer_dashboard.html', title='My Dashboard', farms=farms, weather=weather_forecast)
+    
+    else:
+        return "Error: Unknown user role.", 403
