@@ -11,7 +11,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">SoilGenie</a>
+            <!-- This is the new code for the logo -->
+             <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="SoilGenie Logo" height="40"></a>
             <div class="ms-auto d-flex align-items-center">
                 {% if current_user.is_authenticated %}
                     <span class="navbar-text me-3">

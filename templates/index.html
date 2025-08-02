@@ -18,8 +18,8 @@
         <!-- In a real app, these would be logos of partners -->
         <div class="d-flex justify-content-center align-items-center gap-5">
             <span class="fs-4 text-muted">NigComSat</span>
-            <span class="fs-4 text-muted">IITA</span>
-            <span class="fs-4 text-muted">AFEX</span>
+            <span class="fs-4 text-muted">HaidarSoft</span>
+            <span class="fs-4 text-muted">Mastercard</span>
         </div>
     </section>
 
@@ -50,9 +50,11 @@
     </section>
 
     <!-- 4. FEATURE SPOTLIGHTS -->
-    <section class="mb-5 py-5">
+<section class="mb-5 py-5">
+    <div class="container"> <!-- Added a container for proper alignment -->
+
         <!-- Feature 1: Soil Analysis -->
-        <div class="row align-items-center mb-5">
+        <div class="row align-items-center mb-5 pb-5 border-bottom">
             <div class="col-md-6">
                 <h2 class="heading-font">Precision Soil Intelligence</h2>
                 <p class="lead">Stop wasting money on the wrong fertilizers. Our AI analyzes spectral data to understand your soil's unique needs, providing recommendations for Nitrogen, pH, and more, tailored to your chosen crop.</p>
@@ -63,10 +65,9 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <!-- Placeholder for an image or graphic -->
-                <img src="https://images.unsplash.com/photo-1591785501334-a8ae6225a1e2?q=80&w=2940&auto=format&fit=crop" class="img-fluid rounded-3" alt="Soil analysis graphic">
-            </div>
+                <img src="{{ url_for('static', filename='images/soil_feature.jpg') }}" class="img-fluid rounded-3 shadow-sm" alt="A hand holding rich soil">            </div>
         </div>
+
         <!-- Feature 2: Weather Forecasts -->
         <div class="row align-items-center">
             <div class="col-md-6 order-md-2">
@@ -79,11 +80,12 @@
                 </ul>
             </div>
             <div class="col-md-6 order-md-1">
-                <!-- Placeholder for an image or graphic -->
-                <img src="https://images.unsplash.com/photo-1612253337940-35d1a5a894f0?q=80&w=2940&auto=format&fit=crop" class="img-fluid rounded-3" alt="Weather graphic">
+                <img src="{{ url_for('static', filename='images/weather_feature.jpg') }}" class="img-fluid rounded-3 shadow-sm" alt="A field under a dramatic sky">
             </div>
         </div>
-    </section>
+
+    </div> <!-- Closing the container -->
+</section>
 
     <!-- 5. VISION/MISSION SECTION -->
     <section class="text-center bg-primary-green text-white rounded-3 p-5 mb-5">
