@@ -11,7 +11,6 @@ def index():
     return render_template('index.html', title='Welcome')
 
 @main.route('/dashboard')
-@main.route('/farmer/<int:user_id>')
 @login_required
 def dashboard():
     if current_user.role == 'agent':
@@ -34,7 +33,7 @@ def dashboard():
     else:
         return "Error: Unknown user role.", 403
 
-
+@main.route('/farmer/<int:user_id>')
 @login_required
 def farmer_profile(user_id):
     # Ensure only agents can view other profiles
