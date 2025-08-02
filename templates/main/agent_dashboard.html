@@ -1,5 +1,28 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Agent Dashboard</h1>
-    <p>Welcome, Agent {{ current_user.name }}!</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Agent Dashboard</h1>
+        <!-- In a future version, a button to register farmers would go here -->
+    </div>
+
+    <h3>Managed Farmers</h3>
+    <p>Select a farmer to view their profile and manage their farms.</p>
+    
+    {% if farmers %}
+        <div class="list-group">
+            {% for farmer in farmers %}
+                <a href="{{ url_for('main.farmer_profile', user_id=farmer.id) }}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ farmer.name }}</h5>
+                    </div>
+                    <p class="mb-1">{{ farmer.email }}</p>
+                    <small>{{ farmer.phone_number }}</small>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>There are no farmers registered on the platform yet.</p>
+    {% endif %}
+
 {% endblock %}

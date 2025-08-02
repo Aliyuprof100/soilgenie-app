@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+    <h2>Map a New Farm for {{ farm_owner.name }}</h2>
+    <p>Use the polygon tool on the left to draw the exact boundary of the farm.</p>
+
+    <div id="map" style="height: 500px; width: 100%;" class="mb-3"></div>
+
+    <form method="POST" action="{{ url_for('main.map_farm', user_id=farm_owner.id) }}" id="mapForm">
+        <!-- This hidden field will store the map drawing data -->
+        <input type="hidden" name="geojson_boundary" id="geojson_boundary">
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="farm_name" class="form-label">Farm Name (e.g., North Field)</label>
+                <input type="text" class="form-control" id="farm_name" name="farm_name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="crop_type" class="form-label">What crop will be planted here?</label>
+                <select class="form-select" id="crop_type" name="crop_type" required>
+                    <option value="" selected disabled>-- Select a Crop --</option>
+                    <option value="maize">Maize (Corn)</option>
+                    <option value="cassava">Cassava</option>
+                    <option value="yam">Yam</option>
+                    <option value="rice">Rice</option>
+                    <option value="tomato">Tomato</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100">Analyze This Farm</button>
+    </form>
+
+    <script>
+        // Initialize the map - centered on Nigeria
+        var map = L.map('map').setView([9.0820, 8.6753], 6);
+
+        // Add a tile layer (the map background)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Initialize the FeatureGroup to store editable layers
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        // Initialize the draw control and pass it the FeatureGroup of editable layers
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            },
+            draw: {
+                polygon: true,
+                polyline: false,
+                rectangle: false,
+                circle: false,
+                marker: false,
+                circlemarker: false
+            }
+        });
+        map.addControl(drawControl);
+
+        // Handle the creation of a new layer (the farm boundary)
+        map.on(L.Draw.Event.CREATED, function (event) {
+            var layer = event.layer;
+
+            // Clear previous drawings
+            drawnItems.clearLayers();
+            drawnItems.addLayer(layer);
+
+            // Convert the drawing to GeoJSON format
+            var geojson = layer.toGeoJSON();
+            
+            // Put the GeoJSON string into our hidden form field
+            document.getElementById('geojson_boundary').value = JSON.stringify(geojson.geometry);
+        });
+    </script>
+{% endblock %}

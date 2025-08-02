@@ -1,5 +1,40 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Farmer Dashboard</h1>
-    <p>Welcome, Farmer {{ current_user.name }}!</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>My Dashboard</h1>
+        <a href="{{ url_for('main.map_farm', user_id=current_user.id) }}" class="btn btn-primary btn-lg">
+            [+] Map New Farm
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h3>My Farms</h3>
+            {% if farms %}
+                <div class="list-group">
+                    {% for farm in farms %}
+                        <div class="list-group-item">
+                            <h5 class="mb-1">{{ farm.farm_name }}</h5>
+                            <p class="mb-1">Crop Type: {{ farm.crop_type or 'Not set' }}</p>
+                            <small>Last Analysis: {{ farm.last_analysis_result or 'None' }}</small>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You have not mapped any farms yet. Click the button above to get started!</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Weather Forecast
+                </div>
+                <div class="card-body">
+                    <!-- Weather information will be added here in the next milestone -->
+                    <p>Weather data coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

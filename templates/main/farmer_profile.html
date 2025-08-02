@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>{{ farmer.name }}'s Profile</h1>
+            <p class="lead">Managing farms for {{ farmer.email }}</p>
+        </div>
+        <a href="{{ url_for('main.map_farm', user_id=farmer.id) }}" class="btn btn-primary btn-lg">
+            [+] Map New Farm for {{ farmer.name }}
+        </a>
+    </div>
+
+    <h3>Mapped Farms</h3>
+    {% if farms %}
+        <div class="list-group">
+            {% for farm in farms %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ farm.farm_name }}</h5>
+                    <p class="mb-1">Crop Type: {{ farm.crop_type or 'Not set' }}</p>
+                    <small>Last Analysis: {{ farm.last_analysis_result or 'None' }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No farms have been mapped for {{ farmer.name }} yet.</p>
+    {% endif %}
+{% endblock %}
