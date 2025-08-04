@@ -20,7 +20,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     # MAKE SURE YOU HAVE THIS ENVIRONMENT VARIABLE SET ON RENDER
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///soilgenie.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Now, link the extensions to the created app instance
