@@ -4,7 +4,7 @@
 set -e
 
 # Set the FLASK_APP environment variable for this script's session
-export FLASK_APP=run.py
+export FLASK_APP=run:app
 
 # Run Flask database migrations
 echo "Running database migrations..."
