@@ -9,11 +9,15 @@
 
 ---
 
-| **Quick Links** | |
-|---|---|
-| [**Watch Our 90-Second Video Demo**](https://your-video-link-goes-here.com) | [**View Our Pitch Deck**](https://your-pitch-deck-link-goes-here.com) |
-|---|---|
-| **Live Application Status:** `Deployment in Progress` | **Version:** `1.0.0 (MVP)` |
+---
+
+## Executive Summary
+
+**SoilGenie** is a downstream space-tech and AI Powered startup that converts raw satellite data into actionable, farm-level intelligence for Nigeria's agricultural sector. We solve the critical problem of soil uncertainty by leveraging **Earth Observation (EO)** and **AI** to provide instant, affordable soil analysis and hyperlocal weather forecasts.
+
+Our unique **dual-role platform** serves both tech-savvy, independent farmers directly through a web portal, and reaches rural smallholder farmers via a network of trained **SoilGenie Agents**. The final, actionable recommendation—such as a tailored fertilizer plan—is delivered directly to any mobile phone via **SMS**, bridging the digital divide.
+
+We have successfully developed and deployed a functional MVP that validates this model. We are not just an app; we are building a scalable ecosystem to enhance food security, create rural entrepreneurial opportunities, and generate a tangible economic return on Nigeria's investment in space technology.
 
 ---
 
