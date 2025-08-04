@@ -1,4 +1,5 @@
-from soilgenie import create_app
+
+from . import create_app  # The dot means "from the current package"
 
 app = create_app()
 
