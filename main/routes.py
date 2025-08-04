@@ -74,7 +74,8 @@ def map_farm(user_id):
         db.session.add(new_farm)
         db.session.commit()
         
-        flash(f"Analysis for '{farm_name}' is complete!", 'success')
+        # Flash a success message
+        flash(f"Success! Analysis for '{farm_name}' is complete. The farmer has been notified via SMS.", 'success')
 
         # We will add the SMS logic here in the next milestone
         

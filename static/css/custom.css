@@ -56,3 +56,109 @@ body {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+
+/* --- Awesome Footer Styles --- */
+footer .nav-link {
+    color: #6c757d; /* A nice muted gray */
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+footer .nav-link:hover, footer .btn-link:hover {
+    color: #166534; /* Hover changes to your primary green */
+}
+
+footer .btn-outline-secondary {
+    border-radius: 50%; /* Makes the social media icon buttons circular */
+    width: 36px;
+    height: 36px;
+}
+
+
+/* --- Awesome Navbar Styles --- */
+.navbar-soilgenie {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e5e7eb; /* A subtle bottom border */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+/* =================================
+   Navbar & Logo Final Sizing
+==================================== */
+
+/* This is the master control. It makes the whole navbar taller. */
+.navbar-soilgenie {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    min-height: 85px !important; /* Forces the container to be tall */
+    display: flex;
+    align-items: center;
+}
+
+/* This makes the logo link flexible */
+.navbar-soilgenie .logo-link {
+    display: inline-block;
+    height: 100%;
+}
+
+/* This tells the image to be as tall as its container allows */
+.navbar-soilgenie .logo-link img {
+    height: 65px !important;  /* <--- SET YOUR DESIRED FINAL HEIGHT HERE */
+    width: auto !important;   /* Maintain aspect ratio */
+}
+/* Style for the "Register" button */
+.btn-register {
+    background-color: #166534; /* Your primary green */
+    border-color: #166534;
+    color: #FFFFFF;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #14532d; /* A slightly darker green */
+    border-color: #14532d;
+    color: #FFFFFF;
+}
+
+/* Style for the "Login" button */
+.btn-login {
+    background-color: #2563EB; /* Your action blue */
+    border-color: #2563EB;
+    color: #FFFFFF;
+}
+.btn-login:hover {
+    background-color: #1D4ED8;
+    color: #FFFFFF;
+}
+
+/* Style for the "Dashboard" button for logged-in users */
+.btn-dashboard {
+    background-color: transparent;
+    border: 1px solid #166534;
+    color: #166534;
+}
+
+.btn-dashboard:hover {
+    background-color: #166534;
+    color: #FFFFFF;
+}
+
+/* --- Advanced Navbar Link Styles --- */
+.navbar-soilgenie .nav-link {
+    font-weight: 500;
+    color: #374151; /* A strong, dark gray */
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-soilgenie .nav-link:hover, .navbar-soilgenie .nav-link.active {
+    color: #166534; /* Your primary green for hover and active state */
+}
+
+/* Prevent the dropdown from closing when clicking inside */
+.dropdown-menu {
+    --bs-dropdown-min-width: 280px;
+}

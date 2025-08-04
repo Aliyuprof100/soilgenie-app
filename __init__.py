@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from dotenv import load_dotenv
-
+import datetime
+from flask import render_template
 # Load environment variables from .env file
 load_dotenv()
 
@@ -29,6 +30,11 @@ def create_app():
     # Configure Flask-Login
     login_manager.login_view = 'main.index' # Redirect to landing page if not logged in
     login_manager.login_message_category = 'info'
+    
+    @app.context_processor
+    def inject_current_year():
+        """Injects the current year into all templates."""
+        return {'current_year': datetime.datetime.now().year}
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -41,5 +47,14 @@ def create_app():
 
     from .main.routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        db.session.rollback() # Rollback any broken db sessions
+        return render_template('500.html'), 500
 
     return app

@@ -48,6 +48,41 @@
             </div>
         </div>
     </section>
+  <!-- =================================================================== -->
+     <section class="mb-5 py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="heading-font mb-3">A Platform for Every Role in Agriculture</h2>
+            <p class="lead text-muted col-lg-7 mx-auto mb-5">Whether you manage your own land or provide services to your community, SoilGenie is built to empower you.</p>
+
+            <div class="row">
+                <!-- Column 1: For The Farmer -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 p-3 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon bg-light text-primary-green mb-3">🧑‍🌾</div>
+                            <h3 class="heading-font fs-4">For The Independent Farmer</h3>
+                            <p>Take direct control of your farm's health. Map your own fields, get instant analysis, track your soil's progress over time, and receive weather forecasts directly on your personal dashboard.</p>
+                            <a href="{{ url_for('auth.register') }}" class="btn btn-outline-primary mt-3">Start Farming Smarter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: For The Agent -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 p-3 shadow-sm">
+                        <div class="card-body">
+                            <div class="feature-icon bg-light text-primary-green mb-3">🤝</div>
+                            <h3 class="heading-font fs-4">For The Agri-Entrepreneur</h3>
+                            <p>Build a business providing valuable analysis services. Our agent dashboard allows you to manage multiple farmer clients, perform analysis on their behalf, and deliver crucial insights via SMS.</p>
+                            <a href="{{ url_for('auth.register') }}" class="btn btn-primary mt-3">Become an Agent</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =================================================================== -->
+    <!--                      END OF THE NEW SECTION  
 
     <!-- 4. FEATURE SPOTLIGHTS -->
 <section class="mb-5 py-5">
@@ -105,9 +140,6 @@
 
 <!-- 7. FOOTER -->
 <footer class="py-4 text-center text-muted border-top">
-    <p>© {{ year }} SoilGenie. All Rights Reserved.</p>
-
-    <p><a href="#">Contact Us</a> | <a href="#">Privacy Policy</a></p>
 </footer>
 
 {% endblock %}
