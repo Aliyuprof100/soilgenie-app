@@ -1,31 +1,32 @@
+# soilgenie/__init__.py
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from dotenv import load_dotenv
-import datetime
 from flask import render_template
-# Load environment variables from .env file
+import datetime
+
 load_dotenv()
 
-# Initialize extensions
+# Initialize extensions WITHOUT an app instance first
 db = SQLAlchemy()
 login_manager = LoginManager()
-migrate = Migrate()
+migrate = Migrate() # <--- Initialize Migrate here
 
 def create_app():
     app = Flask(__name__)
 
-    # Configure the app
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///soilgenie.db'
+    # MAKE SURE YOU HAVE THIS ENVIRONMENT VARIABLE SET ON RENDER
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Link extensions to the app
+    # Now, link the extensions to the created app instance
     db.init_app(app)
     login_manager.init_app(app)
-    migrate.init_app(app, db)
+    migrate.init_app(app, db) # <--- Link it to the app AND the db instance here
 
     # Configure Flask-Login
     login_manager.login_view = 'main.index' # Redirect to landing page if not logged in
