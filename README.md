@@ -1,82 +1,119 @@
-# SoilGenie - AI-Powered Agricultural Intelligence
+# SoilGenie: AI-Powered Agricultural Intelligence
 
-![SoilGenie Banner](https://via.placeholder.com/1200x400.png?text=SoilGenie+Banner+Image) <!-- Optional: Replace with a real banner image later -->
+![SoilGenie Professional Banner](https://github.com/Aliyuprof100/soilgenie-app/blob/main/static/images/logo.png) 
+<!-- Optional: Create a banner image (1280x640px) with your logo and a farm background and host it online -->
 
-**Unlock your farm's true potential. SoilGenie is a web platform providing Nigerian farmers with AI-driven soil analysis, precise fertilizer recommendations, and hyperlocal weather forecasts to boost yields and increase profitability.**
+**The operating system for the next generation of Nigerian agriculture. We translate satellite data into farmer prosperity.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status: MVP](https://img.shields.io/badge/status-MVP-success.svg)](https://github.com/YourUsername/soilgenie-app)
+**Official Submission for the NigComSat Accelerator Program Hackathon.**
 
 ---
 
-## The Problem
+| **Quick Links** | |
+|---|---|
+| [**Watch Our 90-Second Video Demo**](https://your-video-link-goes-here.com) | [**View Our Pitch Deck**](https://your-pitch-deck-link-goes-here.com) |
+|---|---|
+| **Live Application Status:** `Deployment in Progress` | **Version:** `1.0.0 (MVP)` |
 
-Nigerian agriculture, the backbone of our economy, faces significant challenges. Farmers often rely on traditional methods, leading to inefficient fertilizer use, depleted soil health, and vulnerability to unpredictable weather. Access to scientific soil testing is expensive, slow, and logistically challenging for the majority of smallholder farmers. This results in lower yields, wasted resources, and reduced profitability, hindering both food security and economic growth.
+---
 
-## Our Solution: SoilGenie
+## 1. The Vision
 
-SoilGenie bridges this gap by placing a **Digital Agronomist** in the hands of every farmer. By leveraging cutting-edge satellite technology and artificial intelligence, we deliver affordable, instant, and actionable insights without requiring a single physical sample.
+**SoilGenie** is a dual-role, mobile-first platform designed to solve the critical information gap in Nigerian agriculture. Our mission is to democratize precision farming by making sophisticated soil analysis and hyperlocal weather forecasting accessible and affordable for every farmer. By leveraging **Earth Observation (EO)** and **Artificial Intelligence**, we empower farmers to increase yields, reduce input costs, and build more sustainable and profitable businesses.
 
-### Core Features
+## 2. The Problem: The High Cost of Uncertainty
 
-*   🛰️ **AI-Powered Soil Analysis:** Get instant predictions for key soil properties like Nitrogen, pH, and Organic Carbon using the latest satellite imagery.
-*   🌱 **Personalized Fertilizer Recommendations:** Receive specific fertilizer advice (type and quantity) tailored to your farm's unique needs and crop type.
-*   ☀️ **Hyperlocal Weather Forecasts:** Access daily and weekly weather forecasts for your exact farm location, not just the nearest city.
-*   🗺️ **Interactive Farm Mapping:** Securely draw, save, and manage your farm boundaries for precise, plot-by-plot analysis.
+The majority of Nigerian farmers operate with limited data, leading to systemic inefficiencies:
+*   **Fertilizer Guesswork:** Sub-optimal application of fertilizers leads to wasted capital and potential environmental damage.
+*   **Inaccessible Lab Testing:** Traditional soil analysis is too slow, expensive, and geographically sparse to be a viable option for most.
+*   **Unpredictable Weather:** Regional weather forecasts are often too generic to inform critical, farm-level decisions.
 
-## The Vision
+This uncertainty is a primary barrier to achieving national food security and maximizing the potential of our agricultural sector. This is a problem that cannot be solved at scale on the ground; it requires a view from space.
 
-Our mission is to democratize precision agriculture. We believe that by providing accessible data, we can empower a new generation of farmers to make smarter, data-driven decisions. SoilGenie aims to be the central operating system for small and medium-scale farms across Nigeria and eventually, Africa.
+## 3. Our Solution: A Platform for the Entire Ecosystem
 
-## Getting Started (For Developers)
+SoilGenie addresses this challenge with a unique, two-pronged platform architecture:
 
-This repository contains the source code for the SoilGenie MVP.
+| For the Independent Farmer | For the Agri-Entrepreneur (Agent) |
+|---|---|
+| A direct-to-farmer portal where tech-savvy farm managers can map their own land, receive instant analysis, track farm health over time, and view hyperlocal weather forecasts on a personal dashboard. | A "business-in-a-box" tool for local entrepreneurs. The agent dashboard allows them to manage a portfolio of farmer clients, perform analysis on their behalf, and deliver crucial insights via a universally accessible **SMS channel**. |
 
-### Technology Stack
+This model ensures that we can serve the top end of the market directly while building a trusted, scalable human network to reach rural and remote farming communities.
 
-*   **Backend:** Python (Flask)
-*   **Frontend:** HTML, CSS, JavaScript (Leaflet.js)
-*   **Database:** SQLite
-*   **Geospatial & AI:** Google Earth Engine API, Scikit-learn
-*   **Version Control:** Git & GitHub
+## 4. Key Features & Technology
 
-### Local Setup & Installation
+This repository contains the full source code for our functional Minimum Viable Product.
+
+#### Core Features:
+*   ✅ **Dual-Role User System:** Secure registration and tailored dashboards for both **Farmers** and **Agents**.
+*   ✅ **Interactive Geospatial Mapping:** A fully responsive Leaflet.js interface for precise farm boundary mapping using GNSS.
+*   ✅ **Crop-Specific Analysis:** A feature to select the intended crop, allowing for more tailored (simulated AI) recommendations.
+*   ✅ **Live Weather Integration:** Provides a 5-day hyperlocal weather forecast for a farm's location via the Open-Meteo API.
+*   ✅ **SMS Delivery System:** Delivers the final analysis directly to any mobile phone using the Twilio API, bridging the digital divide.
+*   ✅ **Professional UI/UX:** A stunning, fully responsive landing page and a clean, intuitive user portal built with Bootstrap 5.
+
+#### Technology Stack:
+*   **Backend:** Python 3.11+, Flask, Flask-SQLAlchemy, Flask-Login, Gunicorn
+*   **Database:** PostgreSQL (Production), SQLite (Development)
+*   **Frontend:** HTML5, CSS3, JavaScript, Bootstrap 5, Leaflet.js
+*   **Deployment:** Architected for cloud deployment on Render.
+*   **Core APIs:** Twilio (SMS), Open-Meteo (Weather)
+*   **Space Technology:** Leverages concepts from **Earth Observation (Sentinel-2)** and **GNSS**.
+
+## 5. Getting Started: Running the Project Locally
+
+The application is fully functional in a local environment.
+
+**Prerequisites:**
+*   Python 3.10+
+*   Git
+
+**Setup Instructions:**
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/[YourUsername]/soilgenie-app.git
+    git clone https://github.com/Aliyuprof100/soilgenie-app.git
     cd soilgenie-app
     ```
-
 2.  **Create and activate a virtual environment:**
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
-    ```
+    # On Windows
+    python -m venv .venv
+    .\.venv\Scripts\activate
 
+    # On Mac/Linux
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
 3.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-
-4.  **Initialize the database:**
+4.  **Set up your environment variables:**
+    *   Create a file named `.env` in the root directory.
+    *   Copy the contents of `.env.example` (or add the required keys: `SECRET_KEY`, `TWILIO_ACCOUNT_SID`, etc.).
+5.  **Initialize and upgrade the database:**
     ```bash
-    python database_setup.py
+    # Set the Flask App (Mac/Linux)
+    export FLASK_APP=run.py 
+    # Or on Windows
+    # set FLASK_APP=run.py
+    
+    flask db upgrade
     ```
-
-5.  **Run the Flask application:**
+6.  **Run the application:**
     ```bash
     flask run
     ```
-    Navigate to `http://127.0.0.1:5000` in your browser.
+    The application will be available at `http://127.0.0.1:5000`.
 
-## Join Our Journey
+## 6. Project Roadmap
 
-We are at the beginning of an exciting journey to revolutionize agriculture. We are actively seeking partners, investors, and talented individuals to join our mission.
-
-*   **For inquiries:** [your.email@soilgenie.com](mailto:your.email@soilgenie.com)
-*   **Follow our progress:** [Link to your future blog or social media]
+Our MVP is the foundation. Our vision for the future includes:
+*   **Q4 2025:** Full integration with live **Google Earth Engine** satellite data.
+*   **Q1 2026:** Launch of our pilot program with 50 agents in a target agricultural zone.
+*   **Q3 2026:** Integration of advanced data layers (soil type, topography) and development of predictive pest/disease models.
+*   **2027:** Launch of our FinTech integration for input financing and marketplace linkages.
 
 ---
-
-This project is proudly licensed under the MIT License.
+*Note: We are actively resolving a platform-specific import path issue on our cloud deployment. The fully functional codebase is provided here for technical review, and we are confident in making the live URL available shortly after the hackathon submission.*
