@@ -1,7 +1,62 @@
+# app.py
+import os
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_migrate import Migrate
+from dotenv import load_dotenv
+import datetime
 
-from soilgenie import create_app
+load_dotenv()
 
-app = create_app()
+# Initialize extensions
+db = SQLAlchemy()
+login_manager = LoginManager()
+migrate = Migrate()
 
+# This is the application instance Gunicorn will look for
+app = Flask(__name__)
+
+# Configure the app
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///soilgenie.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Link extensions to the app
+db.init_app(app)
+login_manager.init_app(app)
+migrate.init_app(app, db)
+
+# Configure Flask-Login
+login_manager.login_view = 'auth.login'
+login_manager.login_message_category = 'info'
+
+@app.context_processor
+def inject_current_year():
+    return {'current_year': datetime.datetime.now().year}
+
+@login_manager.user_loader
+def load_user(user_id):
+    # We need to import the model here
+    from models import User
+    return User.query.get(int(user_id))
+
+# Import and register blueprints
+from auth.routes import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+from main.routes import main as main_blueprint
+app.register_blueprint(main_blueprint)
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
+
+# This part is for local development
 if __name__ == '__main__':
     app.run(debug=True)
