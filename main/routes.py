@@ -2,9 +2,9 @@ from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 from models import User, Farm, db
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from ..services.weather_service import get_weather_for_location
+from services.weather_service import get_weather_for_location
 import json
-from ..services import sms_sender
+from services import sms_sender
 
 main = Blueprint('main', __name__)
 
